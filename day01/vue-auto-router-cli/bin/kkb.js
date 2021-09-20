@@ -6,5 +6,10 @@ program.command('init <name>')
     .description('init project')
     .action(require('../lib/init'));
 // console.log(process.argv)
-program.parse(process.argv);
 // console.log('hellow cli ...')
+
+program.command('refresh')
+    .description('refresh routers...')
+    .action(require('../lib/refresh'));
+
+program.parse(process.argv);
