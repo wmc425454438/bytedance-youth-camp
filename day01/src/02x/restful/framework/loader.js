@@ -22,7 +22,7 @@ const loadModel = config => app => {
     const conn = mongoose.connection;
     conn.on('error', () => console.error('链接失败'))
     load('../model', (filename, {schema}) => {
-        console.log('load model:' + filename, shcema)
+        console.log('load model:' + filename, schema)
         app.$model[filename] = mongoose.model(filename, schema)
     })
 }

@@ -1,6 +1,3 @@
-const { get } = require("lodash");
-const { nextTick } = require("process");
-
 module.exports = {
   async init(ctx, next) {
     const model = ctx.app.$model[ctx.params.list];
