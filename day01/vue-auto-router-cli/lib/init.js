@@ -4,7 +4,8 @@ const figlet = promisify(require('figlet'))
 const clear = require('clear')
 const chalk = require('chalk')
 const log = content => console.log(chalk.green(content))
-const open = require('open')
+const open = require('open');
+const { clone } = require('./download')
 
 const spawn = async(...args) => {
     
@@ -42,12 +43,12 @@ module.exports = async name => {
 
     // 项目模板
     log('创建项目' + name)
-    // await clone('github:su37j')
+    await clone('github:su37josephxia/vue-template', name)
 
     log('安装依赖...')
     // await spawn('npm', ['install'], {cwd: `./${name}`});
     // log(chalk.green(`安装完成`));
 
-    open('http://localhost:8080')
+    // open('http://localhost:8080')
     // await spawn('npm', ['run', 'serve'], {cwd: `./${name}`})
 }
