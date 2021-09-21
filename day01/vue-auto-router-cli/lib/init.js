@@ -6,6 +6,7 @@ const chalk = require('chalk')
 const log = content => console.log(chalk.green(content))
 const { clone } = require('./download')
 const open = require('open');
+const { platform } = require('os')
 
 const spawn = async(...args) => {
     
@@ -46,10 +47,12 @@ module.exports = async name => {
     log('创建项目' + name)
     // await clone('github:su37josephxia/vue-template', name)
 
+    const npmType = process.platform === "win32" ? 'npm.cmd' : 'npm';
+
     log('安装依赖...')
-    await spawn('npm.cmd', ['install'], {cwd: `./${name}`});
+    await spawn(npmType, ['install'], {cwd: `./${name}`});
     log(chalk.green(`安装完成`));
 
     open('http://localhost:8080');
-    await spawn('npm.cmd', ['run', 'serve'], {cwd: `./${name}`})
+    await spawn(npmType, ['run', 'serve'], {cwd: `./${name}`})
 }
