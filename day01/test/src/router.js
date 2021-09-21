@@ -14,9 +14,19 @@ export default new Router({
       component: Home
     },
     {
+      path: '/abc',
+      name: 'abc',
+      component: () => import('./views/Abc.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('./views/About.vue')
-    }
+    },
+    {
+      path: '/efg',
+      name: 'efg',
+      component: () => import('./views/Efg.vue')
+    },
   ]
 })

@@ -45,7 +45,7 @@ module.exports = async name => {
 
     // 项目模板
     log('创建项目' + name)
-    // await clone('github:su37josephxia/vue-template', name)
+    await clone('github:su37josephxia/vue-template', name)
 
     const npmType = process.platform === "win32" ? 'npm.cmd' : 'npm';
 
