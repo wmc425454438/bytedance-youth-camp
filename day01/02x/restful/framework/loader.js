@@ -21,6 +21,7 @@ const loadModel = config => app => {
     mongoose.connect(config.db.url, config.db.options)
     const conn = mongoose.connection;
     conn.on('error', () => console.error('链接失败'))
+    app.$model = {};
     load('../model', (filename, {schema}) => {
         console.log('load model:' + filename, schema)
         app.$model[filename] = mongoose.model(filename, schema)

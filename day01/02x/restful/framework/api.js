@@ -14,7 +14,7 @@ module.exports = {
   },
 
   async get(ctx) {
-    c, (tx.body = await ctx.list.findOne({ _id: ctx.params.id }));
+    ctx.body = await ctx.list.findOne({ _id: ctx.params.id });
   },
 
   async create(ctx) {

@@ -1,6 +1,7 @@
 module.exports = {
     db: {
-        url: 'localhost:27017'
+        url: 'mongodb://localhost:27017/test',
+        options: { useNewUrlParser: true }
     }
 }
 
