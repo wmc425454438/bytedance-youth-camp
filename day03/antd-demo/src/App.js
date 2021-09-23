@@ -1,9 +1,12 @@
+import React from "react";
 import "./App.css";
 import { Input, Menu, Row, Col, Button } from "antd";
 import {
   UnorderedListOutlined,
 } from "@ant-design/icons";
 import { AnimateIcon } from './Animate-icon.js'
+import { MyComponent } from './MyComponent'
+import { ThemeContext, themes } from './ThemeContext'
 
 const { SubMenu } = Menu;
 const { Search } = Input;
@@ -65,6 +68,9 @@ function App(props) {
         </div>
       </div>
       {props.datasource.map(createLine)}
+      <ThemeContext.Provider value={themes.light}>
+        <MyComponent />
+      </ThemeContext.Provider>
     </div>
   );
   // return (
