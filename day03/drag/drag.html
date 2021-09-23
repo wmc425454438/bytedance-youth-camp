@@ -14,7 +14,7 @@
     let move = (e) => {
       let [dx, dy] = [e.clientX - x0, e.clientY - y0];
       console.log(dx, dy);
-      ele.style.transform = `translate(${ex + dx}px, ${ey + dy}px)`;
+      ele.style.transform = `translate3d(${ex + dx}px, ${ey + dy}px, 0)`;
     //   ele.style.left = ex + dx + "px";
     //   ele.style.top = ey + dy + "px";
     };
@@ -22,6 +22,7 @@
       document.removeEventListener("mousemove", move);
       document.removeEventListener("mouseup", up);
       let [dx, dy] = [e.clientX - x0, e.clientY - y0];
+      ele.style.transform = `translate(${ex + dx}px, ${ey + dy}px)`;
       ex += dx, ey += dy;
     }
     ele.addEventListener("mousedown", (e) => {
