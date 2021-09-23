@@ -8,10 +8,10 @@ import { AnimateIcon } from './Animate-icon.js'
 const { SubMenu } = Menu;
 const { Search } = Input;
 
-function App() {
+function App(props) {
+  let createLine = props.template;
   return (
     <div>
-      
       <header>
         <Row>
           <Col flex="0 0 auto">
@@ -64,7 +64,7 @@ function App() {
           </div>
         </div>
       </div>
-
+      {props.datasource.map(createLine)}
     </div>
   );
   // return (
