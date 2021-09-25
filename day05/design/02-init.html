@@ -1,0 +1,75 @@
+<div id="app">
+</div>
+
+<!-- <script src="https://unpkg.com/vue@next"></script> -->
+<script>
+  const Vue = {
+    createApp(options) {
+      return {
+        mount(selector) {
+          // console.log('mount');
+          const parent = document.querySelector(selector);
+          
+          if (options.setup) {
+            this.setupState = options.setup()
+          }
+
+          if(options.data) {
+            this.data = options.data()
+          }
+
+          if(!options.render) {
+            options.render = this.compile(parent.innerHtml)
+          }
+
+
+          const proxy = new Proxy(this, {
+            get(target, key) {
+              if(target.setupState && key in target.setupState) {
+                return target.setupState[key]
+              } else {
+                return target.data[key]
+              }
+
+            },
+            set(target, key, val) {
+              if(target.setupState && key in target.setupState) {
+                target.setupState[key] = val
+              } else {
+                target.data[key] = val
+              }
+            }
+          })
+
+          const el = options.render.call(proxy)
+
+          parent.innerHtml = '';
+          parent.appendChild(el)
+        },
+        compile(template) {
+          // parse -> ast -> generate -> render
+          return function render() {
+            const ele = document.createElement('ele')
+            ele.textContent = this.title;
+            return ele;
+          }
+        }
+      }
+    }
+  }
+</script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        title: "hello, vue3!",
+      };
+    },
+    setup() {
+      return {
+        title: "vue3, hello!"
+      }
+    }
+  });
+  app.mount("#app");
+</script>
